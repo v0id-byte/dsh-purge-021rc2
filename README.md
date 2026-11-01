@@ -75,6 +75,13 @@ tar xzf dsh-purge-$V.tgz -C "$DSH_HOME/profiles/web/node_modules/dsh-purge" --st
 
 想确认真的注入了：随便问一句「你是谁」，回答应该来自 `~/.dsh/prompt-inject.md` 的人格，而不是官方自我介绍。
 
+### 通过反向代理访问演练台
+
+在 DSH 服务进程中设置 `DSH_PURGE_PUBLIC_ORIGIN=https://drill.example.com`，然后重启 DSH。
+插件允许来自回环反向代理、且 Origin 与 Host 匹配该公网地址的请求。
+这项配置与 DSH 自身的 `--public-url` / `--trusted-host` 以及登录鉴权一起使用。
+本机浏览器、SSH 隧道与桌面端继续使用原有来源校验。
+
 ## 验证
 
 仓库自带三组离线测试，不依赖网络：
